@@ -74,10 +74,12 @@
     }
     Pagination.prototype.setModel = function(model) {
         this.model = model;
+        return this;
     }
 
     Pagination.prototype.setShowPageSize = function(num) {
         this.showPageSize = num;
+        return this;
     }
 
     Pagination.prototype.setStyle = function(name) {
