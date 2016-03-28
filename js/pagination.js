@@ -22,9 +22,9 @@
     }
 
     function Pagination(pageIndex, perSize, allNums, url) {
-        this.pageIndex = pageIndex;
-        this.perSize = perSize;
-        this.allNums = allNums;
+        this.pageIndex = parseInt(pageIndex);
+        this.perSize = parseInt(perSize);
+        this.allNums = parseInt(allNums);
         this.pageSize = Math.ceil(this.allNums / this.perSize);
         this.url = url;
         this.showPageSize = 5;
@@ -131,6 +131,7 @@
 
     Pagination.prototype.create = function() {
         var that = this;
+
         function getNormalPage(i) {
             return that.normalJs.apply($(that.normalPage), [i]).click(function() {
                 that.go(i);
@@ -148,7 +149,8 @@
         })) : new DataNode($(this.disNextPage));
         this.startNode = preNode;
         var pNode = this.startNode;
-        var startPageIndex = Math.ceil(this.pageIndex / this.showPageSize-1)*this.showPageSize + 1;
+        var startPageIndex = this.pageIndex - Math.floor(this.showPageSize / 2);
+        startPageIndex = startPageIndex < 1 ? 1 : startPageIndex;
         var temp;
         for (var j = 1; j <= this.edgeSize && j < startPageIndex; j++) {
             temp = new DataNode(getNormalPage(j));
