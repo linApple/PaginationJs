@@ -122,7 +122,7 @@
         }
         var that = this;
         $[this.type](this.url, data, function(d) {
-            that.callBack(d);
+            that.callBack(d,pageIndex);
             if (that.model == 1) {
                 that.pageIndex = pageIndex;
                 that.append(that.initWay[0], that.initWay[1]);
