@@ -122,7 +122,7 @@
         }
         var that = this;
         $[this.type](this.url, data, function(d) {
-            that.callBack(d,pageIndex);
+            that.callBack(d, pageIndex);
             if (that.model == 1) {
                 that.pageIndex = pageIndex;
                 that.append(that.initWay[0], that.initWay[1]);
@@ -193,15 +193,14 @@
 
     Pagination.prototype.append = function(way, obj) {
         this.create();
-        var p = this.startNode,
-            target = p.obj;
-        while (p.next != "") {
-            target = target.after(p.next.obj);
-            p = p.next;
-        }
         this.initWay = [way, obj];
         if (way == "inner") {
-            obj.html(target);
+            obj.html("");
+            var p = this.startNode;
+            while (p != "") {
+                obj.append(p.obj);
+                p = p.next;
+            }
         }
     }
 
